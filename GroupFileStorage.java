@@ -36,7 +36,7 @@ public class GroupFileStorage {
 		}
 	}
 	
-	public static Group loadGroupFromCSV(File file) throws  IOException, GroupOverflowException {
+	public static Group loadGroupFromCSV(File file) throws  IOException, GroupOverflowException, ThisIsStudentInGroupException {
 		Group group = new Group();
 		byte[] data = new byte[1];
 		if (file.exists()) {

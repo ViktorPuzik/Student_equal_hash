@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException, GroupOverflowException, FileNotFound {
+	public static void main(String[] args) throws IOException, GroupOverflowException, FileNotFound, ThisIsStudentInGroupException {
 		// TODO Auto-generated method stub
 		
 		Group group1 = new Group();
@@ -38,7 +38,7 @@ public class Main {
 			group1.addStudent(student9);
 			group1.addStudent(student10);
 			group1.addStudent(student11);
-		} catch (GroupOverflowException e) {
+		} catch (GroupOverflowException | ThisIsStudentInGroupException e) {
 			System.err.println(e.getMessage());
 		}
 		

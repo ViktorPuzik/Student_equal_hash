@@ -28,10 +28,11 @@ public class Group {
 	public void setStudens(Student[] studens) {
 		this.studens = studens;
 	}
-	public void addStudent(Student student) throws GroupOverflowException {
+	public void addStudent(Student student) throws GroupOverflowException,ThisIsStudentInGroupException {
+		student.setGroupName(this.groupName);
+		if(ThisIsStudentsInGroup(student)) {throw new ThisIsStudentInGroupException("Этот студент есть в данной группе");}
 		for (int i = 0; i < studens.length; i++) {
-			if ((studens[i] == null)||(studens[i].getId() == -1)) {
-				student.setGroupName(this.groupName);
+			if (studens[i] == null) {
 				studens[i] = student;
 				return;
 			}
@@ -62,12 +63,21 @@ public class Group {
 	
 	public Boolean equalStudentsInGroup() {
 		for (int i = 0; i < studens.length; i++) {
-			for (int r = i+1; i < studens.length; i++) {
-				if(studens[i].equals(studens[r])) {return true;}
+			for (int r = i+1; r < studens.length; r++) {
+				if(studens[r] != null&&studens[i] != null&& studens[i].equals(studens[r])){return true;}
 			}
 		}
 		return false;
 	}
+	
+	public Boolean ThisIsStudentsInGroup(Student st) {
+		for (int i = 0; i < studens.length; i++) {
+				if(st.equals(studens[i])){return true;}
+			}
+		
+		return false;
+	}
+	
 	
 	@Override
 	public int hashCode() {
